@@ -1,0 +1,56 @@
+﻿@model ClientManagerWeb.ViewModels.Templates.TemplateDetailsViewModel
+
+<br />
+<table class="mainTable">
+    <tr>
+        <th>
+            Name
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Name)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Description
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Description)
+        </td>
+    </tr>
+</table>
+
+<br />
+<div class="display-label">
+    @Html.LabelFor(model => model.LetterSubject)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.LetterSubject)
+</div>
+
+<div class="display-label">
+    @Html.LabelFor(model => model.LetterContent)
+</div>
+<div class="display-field">
+    @Html.TextAreaFor(model => model.LetterContent, new { @readonly = "readonly" })
+</div>
+
+<br />
+<table class="mainTable">
+    <tr>
+        <th>
+            Days interval
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.DaysCount)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Tags
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.SelectedTags)
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,17 @@
+﻿@model ClientManagerWeb.ViewModels.Templates.TemplateDetailsViewModel
+
+@{
+    ViewBag.Title = "Template details";
+}
+
+<h2 class="details-header">Template details</h2>
+
+<fieldset>
+    <legend>Template</legend>
+
+    @Html.Partial("_TemplateDetails")
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

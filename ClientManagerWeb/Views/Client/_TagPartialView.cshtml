@@ -1,0 +1,15 @@
+﻿@using ClientManagerWeb.ViewModels.Client
+@model CreateUpdateViewModel
+@{
+    int i = Model.PartialViewParameterIndex;
+}
+                     <tr id="Item_@(i)">
+                         <td>
+                             @Html.HiddenFor(modelItem => modelItem.Tags[i].Id)
+                             @Html.DropDownListFor(modelItem => modelItem.Tags[i].Value, (IEnumerable<SelectListItem>) ViewData["Tags"])
+                             @Html.ValidationMessageFor(modelItem => modelItem.Tags[i].Value)
+                         </td>
+                         <td>
+                             <a href="javaScript:eraseItem(@i,'Tags')">x</a>
+                         </td>
+                     </tr>

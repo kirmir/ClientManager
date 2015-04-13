@@ -1,0 +1,18 @@
+﻿@model ClientManagerWeb.ViewModels.Client.DetailsViewModel
+
+@{
+    ViewBag.Title = "Details about client";
+}
+
+<h2 class="details-header">Details about client</h2>
+
+<fieldset>
+    <legend>Client's details</legend>
+
+    @Html.Partial("_RemoveDetails")
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

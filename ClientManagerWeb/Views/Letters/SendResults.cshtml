@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Letter sending results";
+}
+
+<h2 class="results-header">Letters sending results</h2>
+
+@if (ViewBag.Successfull != null)
+{
+    <div class="display-label">
+        Successfully sent letters:
+    </div>
+    <table class="mainTable">
+        <tr>
+            <th>To</th>
+            <th>Subject</th>
+        </tr>
+        @foreach (var letter in ViewBag.Successfull)
+        {
+            <tr>
+                <td>
+                    @letter.SendTo
+                </td>
+                <td>
+                    @letter.Subject
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@if (ViewBag.Failed != null)
+{
+    <div class="display-label">
+        Failed to send letters:
+    </div>
+    <table class="mainTable">
+        <tr>
+            <th>To</th>
+            <th>Subject</th>
+        </tr>
+        @foreach (var letter in ViewBag.Failed)
+        {
+            <tr>
+                <td>
+                    @letter.SendTo
+                </td>
+                <td>
+                    @letter.Subject
+                </td>
+            </tr>
+        }
+    </table>
+}

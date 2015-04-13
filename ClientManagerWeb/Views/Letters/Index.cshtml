@@ -1,0 +1,60 @@
+﻿@model ClientManagerWeb.ViewModels.Letters.LettersListViewModel
+
+@{
+    ViewBag.Title = "Letters to send";
+}
+
+<h2 class="letters-to-send-header">Letters to send</h2>
+
+@using (Html.BeginForm())
+{
+    <table class="display" id="mainSortTable">
+        <thead>
+            <tr>
+                <th>
+                    Send to
+                </th>
+                <th>
+                    Subject
+                </th>
+                <th>
+                    Expected send date
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Letters.Length; i++ )
+            {
+                <tr>
+                    <td>
+                        @Html.HiddenFor(model => model.Letters[i].Id)
+                        @{ var letterId = "Letter_" + Model.Letters[i].Id; }
+                        <input type="checkbox" id="@letterId" name="SelectedLetters" value="@Model.Letters[i].Id" />
+                        @Html.DisplayFor(model => model.Letters[i].SendTo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Letters[i].Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Letters[i].ExpectedSendDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.Letters[i].Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = Model.Letters[i].Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>
+        <input type="submit" value="Send selected" />
+    </p>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#mainSortTable').dataTable({ "bJQueryUI": true });
+    });
+</script>

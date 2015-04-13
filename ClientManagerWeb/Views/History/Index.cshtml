@@ -1,0 +1,73 @@
+﻿@model ClientManagerWeb.ViewModels.History.FilterHistoryViewModel
+
+@{
+    ViewBag.Title = "View letters history";
+}
+
+<h2 class="history-header">View letters history</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="filtersArea" style="margin-top: -5em">
+        <table style="border: none">
+            <tr title="Show all client or only my">
+                <td>Date filter: </td>
+                <td>@Html.EditorFor(model => model.DateFrom) - @Html.EditorFor(model => model.DateTill)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Apply" /></td>
+            </tr>
+        </table>
+    </div>
+}
+
+<table class="display" id="mainSortTable">
+    <thead>
+        <tr>
+            <th>
+                Client
+            </th>
+            <th>
+                Date of sent
+            </th>
+            <th>
+                Sender
+            </th>
+            <th>
+                Letter subject
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model.History) {
+        <tr id="@(item.Id)" title="Click for brouse letter details">
+            <td>
+                @Html.DisplayFor(modelItem => item.To)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SendDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.From)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#mainSortTable').dataTable({ "bJQueryUI": true });
+        $('#DateFrom').datepicker({ firstDay: 1, dateFormat: 'dd-mm-yy', clickInput: true, flat: true });
+        $('#DateTill').datepicker({ firstDay: 1, dateFormat: 'dd-mm-yy', clickInput: true, flat: true });
+        $('#mainSortTable tbody tr').click(function () {
+            window.location.href = "/History/Details/" + $(this).attr('id');
+        });
+        $('#mainSortTable tbody tr').css('cursor', 'pointer');
+    });
+</script>

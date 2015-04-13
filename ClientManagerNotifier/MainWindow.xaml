@@ -1,0 +1,23 @@
+﻿<Window x:Class="ClientManagerNotifier.MainWindow"
+        x:Name="MainWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:TaskbarIcon="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.Wpf.TaskbarNotification"
+        Title="MainWindow">    
+    <TaskbarIcon:TaskbarIcon x:Name="_taskbarIcon"
+                             MenuActivation="RightClick">
+        <TaskbarIcon:TaskbarIcon.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Send unsent" FontWeight="Bold"
+                          Command="{Binding SendLetters}"/>                  
+                <MenuItem Header="Check unsent" 
+                          Command="{Binding CheckLetters}"/>
+                <MenuItem Header="Change logon data" 
+                          Command="{Binding UserData}"/>     
+                <Separator />
+                <MenuItem Header="Exit" 
+                          Command="{Binding CloseCommand}" />
+            </ContextMenu>
+        </TaskbarIcon:TaskbarIcon.ContextMenu>
+    </TaskbarIcon:TaskbarIcon>
+</Window>

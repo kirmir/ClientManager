@@ -1,0 +1,9 @@
+﻿@model ClientManagerWeb.ViewModels.ClientTypes.ClientTypeViewModel
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Value)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Value)
+    @Html.ValidationMessageFor(model => model.Value)
+</div>

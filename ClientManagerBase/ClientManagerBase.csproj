@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7F82C85D-8314-4A60-87F7-6F4692C51B5C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClientManagerBase</RootNamespace>
+    <AssemblyName>ClientManagerBase</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context\DatabaseContext.cs" />
+    <Compile Include="Context\DatabaseContextInitializer.cs" />
+    <Compile Include="Context\IDatabaseContext.cs" />
+    <Compile Include="Helpers\CalcSha1.cs" />
+    <Compile Include="Models\Setting.cs" />
+    <Compile Include="Services\EmailSenderService.cs" />
+    <Compile Include="Helpers\FilterByTagHelper.cs" />
+    <Compile Include="Libs\DynamicQueryable.cs" />
+    <Compile Include="Models\Clients\Client.cs" />
+    <Compile Include="Models\Clients\ClientType.cs" />
+    <Compile Include="Models\Clients\Tag.cs" />
+    <Compile Include="Models\Contacts\Address.cs" />
+    <Compile Include="Models\Contacts\Email.cs" />
+    <Compile Include="Models\Contacts\PhoneNumber.cs" />
+    <Compile Include="Models\Contacts\Website.cs" />
+    <Compile Include="Models\Letters\Letter.cs" />
+    <Compile Include="Models\Letters\Template.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Repository\DatabaseRepository.cs" />
+    <Compile Include="Repository\IDataRepository.cs" />
+    <Compile Include="Services\LetterService.cs" />
+    <Compile Include="Services\SettingsProvider.cs" />
+    <Compile Include="Services\TagService.cs" />
+    <Compile Include="Services\UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

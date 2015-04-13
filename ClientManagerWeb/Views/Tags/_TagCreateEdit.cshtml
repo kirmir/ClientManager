@@ -1,0 +1,33 @@
+﻿@model ClientManagerWeb.ViewModels.Tags.TagCreateEditViewModel
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Value)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Value)
+    @Html.ValidationMessageFor(model => model.Value)
+</div>
+
+<div class="editor-label">
+    Templates
+</div>
+<div class="scroll-box-templates">
+    @foreach (var template in ViewBag.Templates)
+    {
+        <div>
+            @{ var optionId = "TemplateOption_" + template.Id; }
+            <input type="checkbox" id="@optionId" name="SelectedTemplates" value="@template.Id"
+                    @((Model != null && Model.SelectedTemplates != null &&
+                        Array.IndexOf(Model.SelectedTemplates, template.Id) != -1) ? "checked=\"checked\"" : null) />
+            <label for="@optionId">@template.Name</label>
+        </div>
+    }
+</div>
+<a href="javaScript:selectAll(true)">Select all</a>
+<a href="javaScript:selectAll(false)">Deselect all</a>
+
+<script type="text/javascript">
+    function selectAll(check) {
+        $("input[id^=TemplateOption]").attr('checked', check);
+    }
+</script>

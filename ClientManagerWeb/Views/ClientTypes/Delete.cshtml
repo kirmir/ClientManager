@@ -1,0 +1,38 @@
+﻿@model ClientManagerWeb.ViewModels.ClientTypes.ClientTypeViewModel
+
+@{
+    ViewBag.Title = "Delete client type";
+}
+
+<h2 class="delete-header">Delete client type</h2>
+
+<h3>Are you sure you want to delete this client type?</h3>
+<fieldset>
+    <legend>Client type</legend>
+
+    <br />
+    <table class="mainTable">
+        <tr>
+            <th>
+                Name
+            </th>
+            <td>
+                @Model.Value
+            </td>
+        </tr>
+    </table>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        @if (!ViewBag.TypeIsUsed)
+        {
+            <input type="submit" value="Delete" />
+        }
+        else
+        {
+            @:Type can not be deleted because it is used.
+        }
+        |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,57 @@
+﻿@model ClientManagerWeb.ViewModels.History.DetailsViewModel
+
+@{
+    ViewBag.Title = "Letter history details";
+}
+
+<h2 class="details-header">Details</h2>
+
+<fieldset>
+    <legend>Letter details.</legend>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.ClientTitle)
+    </div>
+    <div class="display-field">
+        @Html.ActionLink(Model.ClientTitle, "Details", "Client", new { Id = Model.ClientId }, null)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.ActualSentDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ActualSentDate)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.ExpectedSendDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExpectedSendDate)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.FromNameEmail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FromNameEmail)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.Subject)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Subject)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.Content)
+    </div>
+    <div class="display-field">
+        @Html.TextAreaFor(model => model.Content, new { @readonly = "readonly" })
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,43 @@
+﻿@model ClientManagerWeb.ViewModels.Tags.TagDetailsViewModel
+
+<br />
+<table class="mainTable">
+    <tr>
+        <th>
+            Name
+        </th>
+        <td>
+            @Model.Value
+        </td>
+    </tr>
+</table>
+    
+<div class="editor-label">
+    Attached templates
+</div>
+<table class="mainTable">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.AttachedTemplates) {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Templates", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>

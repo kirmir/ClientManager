@@ -1,0 +1,27 @@
+﻿@model ClientManagerWeb.ViewModels.Client.CreateUpdateViewModel
+           
+@{
+    ViewBag.Title = "Create new client record";
+}
+
+<h2 class="edit-header">Create new client record</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Client's data</legend>
+
+        @Html.Partial("_CreateUpdate")
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

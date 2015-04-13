@@ -1,0 +1,15 @@
+﻿@using ClientManagerWeb.ViewModels.Client
+@model CreateUpdateViewModel
+@{
+    int i = Model.PartialViewParameterIndex;
+}
+                     <tr id="Item_@(i)">
+                         <td>
+                             @Html.HiddenFor(modelItem => modelItem.Websites[i].Id)
+                             @Html.EditorFor(modelItem => modelItem.Websites[i].Value)
+                             @Html.ValidationMessageFor(modelItem => modelItem.Websites[i].Value)
+                         </td>
+                         <td>
+                             <a href="javaScript:eraseItem(@i,'Websites')">x</a>
+                         </td>
+                     </tr>

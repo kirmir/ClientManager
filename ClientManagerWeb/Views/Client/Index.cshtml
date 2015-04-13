@@ -1,0 +1,129 @@
+﻿@model ClientManagerWeb.ViewModels.Client.IndexViewModel
+
+@{
+    ViewBag.Title = "Clients";
+}
+
+<h2 class="clients-header">Clients</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <div class="filtersArea" style="margin-top: -10em">
+        <table style="border: none">
+            <tr title="Show all client or only my">
+                <td>User filter: </td>
+                <td>@Html.DropDownListFor(model => model.MyAll, (IEnumerable<SelectListItem>)ViewBag.Users)</td>
+            </tr>
+            <tr title="Shown clients of some type">
+                <td>Client type filter:</td>
+                <td>@Html.DropDownListFor(model => model.ClientTypeId, (IEnumerable<SelectListItem>)ViewBag.ClientTypes)</td>
+            </tr>
+            <tr title="Type the tags that are delimited with | or & symbols">
+                <td>Client tags filter:</td>
+                <td>
+                    @Html.EditorFor(model => model.ClientTags)
+                    @Html.DropDownList("taglistlog", new SelectList(new[] {"OR", "AND"}))
+                    @Html.DropDownList("taglist", (IEnumerable<SelectListItem>)ViewBag.ClientTags, new{ onchange = "javaScript:addSelectedItem()" })
+                    <script type="text/javascript">
+                        function addSelectedItem() {
+                            var val = $('#ClientTags').val();
+                            if (val != "") {
+                                if ($('#taglistlog').val() == "OR") {
+                                    val = val + " | ";
+                                }
+                                else {
+                                    val = val + " & ";
+                                }
+                            }
+                            $('#ClientTags').val(val + $('#taglist').val());
+                            $('#taglist').val("");
+                        }
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Apply" /></td>
+            </tr>
+        </table>
+    </div>
+}
+
+<br/>
+<table class="display" id="mainSortTable">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Client name
+            </th>
+            <th>
+                Company name
+            </th>
+            <th>
+                Main e-mail
+            </th>
+            <th>
+                Client type
+            </th>
+            <th>
+                Creation date
+            </th>
+            <th>
+                Tags
+            </th>
+            <th>
+                User
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model.ShortDetails) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MainEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tags)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#mainSortTable').dataTable({ "bJQueryUI": true });
+    });
+</script>

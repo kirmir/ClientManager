@@ -1,0 +1,49 @@
+﻿<Window x:Class="ClientManagerNotifier.Views.UserDataEditor"
+        x:Name="MainWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Type new logon data" 
+        Width="400"
+        SizeToContent="Height"
+        FontSize="18" 
+        Foreground="#FF52BFC4"        
+        FontFamily="Verdana"
+        WindowStyle="None" 
+        BorderThickness="2" 
+        BorderBrush="White"
+        ResizeMode="NoResize" 
+        MouseLeftButtonDown="WindowMouseLeftButtonDown">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+            <GradientStop Color="#FF06333C" Offset="0" />
+            <GradientStop Color="#FF29645F" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>
+    <StackPanel Margin="20 10 20 0">
+        <TextBlock Foreground="#FFB9AF50" 
+                   FontWeight="Bold"
+                   Margin="0 0 0 10"
+                   Text="{Binding Path=Title, ElementName=MainWnd}" />
+        <Rectangle MaxHeight="2"
+                   StrokeThickness="2">
+            <Rectangle.Stroke>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FF4093A1" Offset="0" />
+                    <GradientStop Color="#FF1B5051" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Stroke>
+        </Rectangle>
+        <TextBlock Margin="0 10 0 0" 
+                   FontStyle="Italic">User name</TextBlock>
+        <TextBox Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Margin="0 10 0 0"                   
+                   FontStyle="Italic"
+                   ToolTip="{Binding PasswordToolTip}">Password</TextBlock>
+        <PasswordBox ToolTip="{Binding PasswordToolTip}" PasswordChanged="PasswordBoxPasswordChanged" />
+        <StackPanel Orientation="Horizontal"
+                    Margin="0 30 0 20">
+            <Button Width="150" Command="{Binding SaveData}">Save data</Button>
+            <Button Width="150" IsCancel="True">Exit</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

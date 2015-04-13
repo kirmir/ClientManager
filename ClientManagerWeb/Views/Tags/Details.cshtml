@@ -1,0 +1,17 @@
+﻿@model ClientManagerWeb.ViewModels.Tags.TagDetailsViewModel
+
+@{
+    ViewBag.Title = "Tag details";
+}
+
+<h2 class="details-header">Tag details</h2>
+
+<fieldset>
+    <legend>Tag</legend>
+
+    @Html.Partial("_TagDetails")
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

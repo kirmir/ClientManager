@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ClientManagerNotifier.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CheckInterval" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">00:05:00</Value>
+    </Setting>
+    <Setting Name="IconColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="LettersUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:2375/Letters</Value>
+    </Setting>
+    <Setting Name="NotifyTimeOut" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">00:01:00</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

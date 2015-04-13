@@ -1,0 +1,72 @@
+﻿@model ClientManagerWeb.ViewModels.Letters.LetterDetailsViewModel
+
+@{
+    ViewBag.Title = "Letter details";
+}
+
+<h2 class="details-header">Letter details</h2>
+
+<fieldset>
+    <legend>Letter</legend>
+
+    <br />
+    <table class="mainTable">
+        <tr>
+            <th>
+                To
+            </th>
+            <td>
+                @Html.ActionLink(Model.ToSecondFirstName, "Details", "Client", new { id = Model.ClientId }, null)
+                &lt;@Html.DisplayFor(model => model.ToEmail)&gt;
+            </td>
+        </tr>
+        <tr>
+            <th>
+                From
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.FromName)
+                &lt;@Html.DisplayFor(model => model.FromEmail)&gt;
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <div class="display-label">
+        @Html.LabelFor(model => model.Subject)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Subject)
+    </div>
+
+    <div class="display-label">
+        @Html.LabelFor(model => model.Content)
+    </div>
+    <div class="display-field">
+        @Html.TextAreaFor(model => model.Content, new { @readonly = "readonly" })
+    </div>
+
+    <br />
+    <table class="mainTable">
+        <tr>
+            <th>
+                Used template
+            </th>
+            <td>
+                @Html.ActionLink(Model.TemplateName, "Details", "Templates", new { id = Model.TemplateId }, null)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Expected send date
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.ExpectedSendDate)
+            </td>
+        </tr>
+    </table>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

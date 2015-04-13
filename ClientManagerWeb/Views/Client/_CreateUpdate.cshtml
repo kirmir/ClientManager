@@ -1,0 +1,271 @@
+﻿@model ClientManagerWeb.ViewModels.Client.CreateUpdateViewModel
+           
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SecondName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SecondName)
+            @Html.ValidationMessageFor(model => model.SecondName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompanyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompanyName)
+            @Html.ValidationMessageFor(model => model.CompanyName)
+        </div>
+                
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TypeId, "Type")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.TypeId, (IEnumerable<SelectListItem>)ViewBag.Types)
+            @Html.ValidationMessageFor(model => model.TypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Details)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Details)
+            @Html.ValidationMessageFor(model => model.Details)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.UserId, (IEnumerable<SelectListItem>)ViewBag.Users)
+            @Html.ValidationMessageFor(model => model.UserId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreationDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreationDate)
+            @Html.ValidationMessageFor(model => model.CreationDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MainEmail)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.MainEmail, new SelectList(String.Empty), new { onfocus = "fillMailItems()" })
+            @Html.ValidationMessageFor(model => model.MainEmail)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Emails)
+        </div>
+        <div class="editor-field">
+            <table id="EmailsTable">
+                <tbody>
+                    @for (int i = 0; i < Model.Emails.Length; i++)
+                    {
+                        ViewBag.LastMailId = i;
+                        Model.PartialViewParameterIndex = i;
+                        Html.RenderPartial("_EmailPartialView");
+                    }
+                </tbody>
+            </table>
+            <a href="AddItem/" id="addEmail">add mail</a>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumbers)
+        </div>
+        <div class="editor-field">
+            <table id="PhoneNumbersTable">
+                <tbody>
+                    @for (int i = 0; i < Model.PhoneNumbers.Length; i++)
+                    {
+                        ViewBag.LastPhoneNumberId = i;
+                        Model.PartialViewParameterIndex = i;
+                        Html.RenderPartial("_PhoneNumberPartialView");
+                    } 
+                </tbody>
+            </table>
+            <a href="AddItem/" id="addPhoneNumber">add phone number</a>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Addresses)
+        </div>
+        <div class="editor-field">
+            <table id="AddressesTable">
+                <tbody>
+                    @for (int i = 0; i < Model.Addresses.Length; i++)
+                    {
+                        ViewBag.LastAddressId = i;
+                        Model.PartialViewParameterIndex = i;
+                        Html.RenderPartial("_AddressPartialView");
+                    } 
+                </tbody>
+            </table>
+            <a href="AddItem/" id="addAddress">add address</a>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Websites)
+        </div>
+        <div class="editor-field">
+            <table id="WebsitesTable">
+            <tbody>
+                    @for (int i = 0; i < Model.Websites.Length; i++)
+                    {
+                        ViewBag.LastWebsiteId = i;
+                        Model.PartialViewParameterIndex = i;
+                        Html.RenderPartial("_WebsitePartialView");
+                    } 
+                </tbody>
+            </table>
+            <a href="AddItem/" id="addWebSite">add website</a>
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TagList)
+            <br/>Choose tags from select list, or type in hand mode. Tags should be separated by comma.
+        </div>
+        <div class="editor-field">
+            <div id="TagsContainer">
+                @Html.EditorFor(model => model.TagList)
+                @Html.ValidationMessageFor(model => model.TagList)
+                <br/>
+                @Html.DropDownList("taglists", (IEnumerable<SelectListItem>)ViewBag.TagLists, new{ onchange = "javaScript:addSelectedItem()" })
+                <script type="text/javascript">
+                    function addSelectedItem() {
+                        if($('#TagList').val() == "") $('#TagList').val($('#taglists').val());
+                        else $('#TagList').val($('#TagList').val() + ", " + $('#taglists').val());
+                        $('#taglists').val("");
+                    }
+                </script>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var lastInsertedMailId = @(ViewBag.LastMailId??0) ;
+            var lastInsertedPhoneNumberId = @(ViewBag.LastPhoneNumberId??0) ;
+            var lastInsertedAddressId = @(ViewBag.LastAddressId??0) ;
+            var lastInsertedWebsiteId = @(ViewBag.LastWebsiteId??0) ;
+            var defaultMainEmailValue = "@Model.MainEmail" ; 
+    
+            function eraseItem(id, field) {
+                if(field == "Emails") {
+                    if(isLastEmail()) return;
+                }
+                $('#' + field + 'Table input[id$=' + id +'__Value]').val("");
+                $('#' + field + 'Table #Item_' + id).hide();
+                fillMailItems();
+            }
+
+            function isLastEmail() {
+                var count = 0;        
+                $("#EmailsTable input[id$=Value]").each(function()
+                    {
+                    if ($(this).val() != "")
+                    {
+                        count++;                
+                        if(count==2) return;
+                    }
+                    return;
+                });
+                if(count<2) return true;
+                return false;
+            }
+
+            function addItem(field) {
+                var indexCur = 0;
+                if(field == "Emails")
+                    indexCur = ++lastInsertedMailId;            
+                if(field == "PhoneNumbers")
+                    indexCur = ++lastInsertedPhoneNumberId;
+                if(field == "Addresses")
+                    indexCur = ++lastInsertedAddressId;
+                if(field == "Websites")
+                    indexCur = ++lastInsertedWebsiteId;
+        
+                $.ajax({
+                    url: "/Client/AddItem/",
+                    type: "POST",
+                    data: "id=" + indexCur + "&field=" + field,
+                    success: function (data) {
+                            $('#' + field + 'Table tbody').append(data);                          
+                    },
+                    error: function () {
+                        alert("Fail! Some data cannot be save in the future!");
+                    }
+                });
+            }
+
+            function addTag() {
+                $('#TagsContainer').append($('#TagListItemExample').clone().show());
+                $('#TagsContainer').append("<br/>");     
+            }
+   
+            function fillMailItems() {
+                $('#MainEmail').find('option').remove().end();
+                $("#EmailsTable input[id$=Value]").each( function()
+                {
+                    var value = $(this).val();
+                    if(value != "")
+                    {
+                        $('#MainEmail').
+                            append($("<option></option>").
+                                    text(value));
+                    }
+                });
+                $('#MainEmail').val(defaultMainEmailValue);
+            }
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#CreationDate').datepicker({ firstDay: 1, dateFormat: 'dd-mm-yy', clickInput: true });
+                fillMailItems();
+                $('#taglists').val("");
+            });
+            $("#addWebSite").click(function() {
+                addItem('Websites');
+                return false;
+            });
+            $("#addAddress").click(function () {
+                addItem('Addresses');
+                return false;
+            });
+            $("#addPhoneNumber").click(function () {
+                addItem('PhoneNumbers');
+                return false;
+            });
+            $("#addEmail").click(function () {
+                addItem('Emails');
+                return false;
+            });
+        </script>

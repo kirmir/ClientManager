@@ -1,0 +1,48 @@
+﻿@model ClientManagerWeb.ViewModels.Letters.LetterEditViewModel
+
+@{
+    ViewBag.Title = "Edit letter";
+}
+
+<h2 class="edit-header">Edit letter</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Letter</legend>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.To)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.To)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Subject)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Subject, new { style = "width: 700px;" })
+            @Html.ValidationMessageFor(model => model.Subject)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Content)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Content, new { style = "height: 200px; width: 700px;" })
+            @Html.ValidationMessageFor(model => model.Content)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

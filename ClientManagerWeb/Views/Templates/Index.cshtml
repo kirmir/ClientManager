@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ClientManagerWeb.ViewModels.Templates.TemplatesListRecordViewModel>
+
+@{
+    ViewBag.Title = "Templates";
+}
+
+<h2 class="list-header">Templates</h2>
+
+<p>
+    @Html.ActionLink("Create new template", "Create")
+</p>
+<table class="display" id="mainSortTable">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Days interval
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DaysCount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#mainSortTable').dataTable({ "bJQueryUI": true });
+    });
+</script>

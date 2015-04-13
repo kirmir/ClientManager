@@ -1,0 +1,108 @@
+﻿@model ClientManagerWeb.ViewModels.Client.DetailsViewModel
+           
+    <div class="display-label">@Html.LabelFor(model => model.Title)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+    
+    <div class="display-label">@Html.LabelFor(model => model.Description)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.FirstName)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.SecondName)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SecondName)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.CompanyName)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyName)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.Details)</div>
+    <div class="display-field">
+        @Html.TextAreaFor(model => model.Details, new { @readonly = "readonly" })
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.User)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.Type)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.CreationDate)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreationDate)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.MainEmail)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MainEmail)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.Emails)</div>
+    <div class="display-field">
+    @if (Model.Emails != null)
+    {
+        foreach (var item in Model.Emails)
+        {
+            @Html.DisplayFor(model => item)
+            <br/>
+        }
+    }
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.PhoneNumbers)</div>
+    <div class="display-field">
+        @if (Model.PhoneNumbers != null)
+        {
+            foreach (var item in Model.PhoneNumbers)
+            {
+                @Html.DisplayFor(model => item)
+                <br/>
+            }
+        }
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.Addresses)</div>
+    <div class="display-field">
+    @if (Model.Addresses != null)
+    {
+        foreach (var item in Model.Addresses)
+        {
+            @Html.DisplayFor(model => item)
+            <br/>
+        }
+    }
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.Websites)</div>
+    <div class="display-field">
+    @if (Model.Websites != null)
+    {
+        foreach (var item in Model.Websites)
+        {
+            @Html.DisplayFor(model => item)
+            <br/>
+        }
+    }
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.Tags)</div>
+    <div class="display-field">
+    @if (Model.Tags != null)
+    {
+         @Html.DisplayFor(model => model.Tags)
+    }
+         <br/>
+    </div>

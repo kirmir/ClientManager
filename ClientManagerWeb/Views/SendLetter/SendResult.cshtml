@@ -1,0 +1,18 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Send letter";
+}
+
+<h2 class="results-header">Letters sending results</h2>
+     
+<fieldset>
+    <legend>Letter were sent to:</legend>
+
+@foreach (var item in Model)
+{
+    <div class="display-field">
+        @Html.DisplayFor(model => item)
+    </div>
+}
+</fieldset>
